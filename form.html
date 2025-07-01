@@ -49,30 +49,5 @@
         <input type="reset" value="Reset"><br><br>
     </form>
     </center>
-
-    <script>
-        document.getElementById("applicationForm").addEventListener("submit", function(e) {
-            e.preventDefault(); // Prevent actual form submission
-
-            const formData = {
-                "First Name": document.getElementById("firstName").value,
-                "Last Name": document.getElementById("lastName").value,
-                "Date of Birth": document.getElementById("dob").value,
-                "Age": document.getElementById("age").value,
-                "Gender": document.getElementById("gender").value,
-                "Email": document.getElementById("email").value,
-                "Position": document.querySelector('input[name="position"]:checked')?.value || "",
-                "Programming Languages": Array.from(document.querySelectorAll('input[name="languages"]:checked')).map(cb => cb.value).join(", "),
-                "Password": document.getElementById("password").value,
-                "Confirm Password": document.getElementById("confirmPassword").value
-            };
-
-            const worksheet = XLSX.utils.json_to_sheet([formData]);
-            const workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, "Application Data");
-
-            XLSX.writeFile(workbook, "Application_Form_Data.xlsx");
-        });
-    </script>
 </body>
 </html>
